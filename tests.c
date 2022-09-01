@@ -1,31 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
 #include "libft.h"
-
-char * strnstr(const char *s, const char *find, size_t slen){
-	char c, sc;
-	size_t len;
-
-	if ((c = *find++) != '\0') {
-		len = strlen(find);
-		do {
-			do {
-				if ((sc = *s++) == '\0' || slen-- < 1)
-					return (NULL);
-			} while (sc != c);
-			if (len > slen)
-				return (NULL);
-		} while (strncmp(s, find, len) != 0);
-		s--;
-	}
-	return ((char *)s);
-}
 
 int main(int argc, char const *argv[])
 {
     char src[] = "testazd";
-    char cmp[] = "";
+    char cmp[] = " ";
+    char c = 'a';
     int n = 5;
-    printf("FT: %d\n", ft_strnstr(src, cmp, n));
-    printf("DE: %d\n", strnstr(src, cmp, n));
+    void *test = malloc(n);
+
+    printf("FT: %s\n", ft_memmove(test, src, n));
+    //printf("DE: %s\n", memmove(test, src, n));
     return 0;
 }

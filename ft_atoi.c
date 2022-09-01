@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 17:54:25 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/01 17:54:25 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/01 23:15:41 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/01 23:15:41 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t len)
+static int	ft_isspace(int c)
 {
-	size_t	j;
-	size_t	i;
+	return (c == 32 || (c > 8 && c < 14));
+}
 
-	if (*s2 == '\0')
-		return ((char *) s1);
+int	ft_atoi(const char *nptr)
+{
+	int	result;
+	int	sign;
+	int	i;
+
+	result = 0;
 	i = 0;
-	while (s1[i] != '\0' && i < len)
-	{
-		j = 0;
-		while (i + j < len && s2[j] == s1[i + j])
-		{
-			j++;
-			if (s2[j] == '\0')
-				return ((char *) s1 + i);
-		}
+	while (ft_isspace(nptr[i]))
 		i++;
-	}
-	return (NULL);
+	sign = 1;
+	if (nptr[i] == '-' || nptr[i] == '+')
+		if (nptr[i++] == '-')
+			sign = -1;
+	while (ft_isdigit(nptr[i]))
+		result = result * 10 + nptr[i++] - 48;
+	return (result * sign);
 }
