@@ -5,13 +5,15 @@
 
 int main(int argc, char const *argv[])
 {
-    char src[] = "testazd";
-    char cmp[] = " ";
-    char c = 'a';
+    char src[] = "test";
+    char dest[] = "z";
+    char src2[] = "test";
+    char dest2[] = "z";
     int n = 5;
-    void *test = malloc(n);
 
-    printf("FT: %s\n", ft_memmove(test, src, n));
-    //printf("DE: %s\n", memmove(test, src, n));
+    printf("FT: %lu\n", ft_strlcat(dest, src, n));
+    printf("Src: %s\nDest: %s\n\n", src, dest);
+    printf("DE: %lu\n", strlcat(dest2, src2, n));
+    printf("Src: %s\nDest: %s\n", src2, dest2);
     return 0;
 }
