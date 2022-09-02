@@ -6,14 +6,16 @@
 int main(int argc, char const *argv[])
 {
     char src[] = "test";
-    char dest[] = "z";
-    char src2[] = "test";
-    char dest2[] = "z";
+    char dest[] = "test";
     int n = 5;
+    int *t = ft_calloc(n, sizeof(int));
 
-    printf("FT: %lu\n", ft_strlcat(dest, src, n));
-    printf("Src: %s\nDest: %s\n\n", src, dest);
-    printf("DE: %lu\n", strlcat(dest2, src2, n));
-    printf("Src: %s\nDest: %s\n", src2, dest2);
+    for (size_t i = 0; i < n; i++)
+    {
+        printf("FT: %d\n", t[i]);
+    }
+    
+    //printf("FT: %d\n", ft_memcmp(dest, src, n));
+    //printf("DE: %d\n", memcmp(dest, src, n));
     return 0;
 }

@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 16:42:34 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/01 16:42:34 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/02 15:01:37 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/02 15:01:37 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-static int	only_one(int i)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	if (i < 0)
-		return (-1);
-	if (i > 0)
-		return (1);
-	return (0);
-}
-
-// TODO Finir
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
-{
-	if (n != 0)
-	{
-		while (*((unsigned char *) s1) == *((unsigned char *) s2) && n--)
-		{
-			s1++;
-			s2++;
-		}
-		return (only_one(*((unsigned char *) s1) - *((unsigned char *) s2)));
-	}
-	return (0);
+	void	*result;
+	if (nmemb == 0 || size == 0)
+		nmemb = size = 1;
+	result = malloc(nmemb * size);
+	if (result)
+		ft_bzero(result, nmemb * size);
+	return (result);
 }
