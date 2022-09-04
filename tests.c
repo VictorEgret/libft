@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
     int n = 5;
     int *t = ft_calloc(n, sizeof(int));
     
-    printf("FT: %s\n", ft_strtrim(" a a a a", " "));
+    printf("FT: %s\n", ft_itoa(-5));
     //printf("DE: %d\n", substr(dest, src, n));
     return 0;
 }
