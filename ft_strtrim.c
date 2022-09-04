@@ -1,30 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.C                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 17:40:17 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/02 17:40:17 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/02 23:27:16 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/02 23:27:16 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+// TODO Finir
+static int	strcontains(const char *str, char c)
+{
+	while (*str)
+	{
+		if (*str == c)
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;
-	size_t	result_len;
+	int		i;
+	size_t	len;
 
-	result_len = ft_strlen(s) - start;
-	if (result_len > len)
-		result_len = len;
-	result = malloc(result_len + 1);
+	i = 0;
+	len = 0;
+	while (s1[i])
+		if (!strcontains(set, s1[i++]))
+			len++;
+	result = (char *) malloc(len + 1);
 	if (!result)
 		return (NULL);
-	result = ft_memcpy(result, s + start, result_len);
-	result[result_len] = '\0';
-	return (result);
+	i = 0;
+	while (s1[i])
+	{
+		if (!strcontains(set, s1[i]))
+			*result++ = s1[i];
+		i++;
+	}
+	*result = '\0';
+	return (result - len);
 }

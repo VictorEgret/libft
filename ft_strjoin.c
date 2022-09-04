@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 19:44:46 by vegret            #+#    #+#             */
-/*   Updated: 2022/08/31 19:44:46 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/02 22:37:56 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/02 22:37:56 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	while (*s)
-	{
-		if (*s == c)
-			return ((char *) s);
-		s++;
-	}
-	return (NULL);
-}
+	char	*result;
+	size_t	size;
 
-char	*ft_strrchr(const char *s, int c)
-{
-	int	i;
-
-	i = ft_strlen(s) - 1;
-	while (i >= 0)
-	{
-		if (s[i] == c)
-			return ((char *) &s[i]);
-		i--;
-	}
-	return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2) + 1;
+	result = malloc(size);
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, s1, size);
+	ft_strlcat(result, s2, size);
+	return (result);
 }
