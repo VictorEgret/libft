@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 16:58:33 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 16:58:33 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/05 21:17:26 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/05 21:17:26 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
 #include "libft.h"
 
-int	main(int argc, char const *argv[])
+t_list	*ft_lstlast(t_list *lst)
 {
-	(void) argc;
-	(void) argv;
-	char src[] = "test";
-	char dest[] = "test";
-	int n = 5;
-	
-	printf("FT: %s\n", ft_strtrim("wsh la street", " "));
-	
-	return (0);
+	t_list	*tmp;
+
+	if (lst)
+	{
+		tmp = lst;
+		while (tmp->next)
+			tmp = tmp->next;
+		return (tmp);
+	}
+	return (lst);
 }

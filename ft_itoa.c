@@ -11,16 +11,15 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 static size_t	intlen(int n)
 {
 	size_t	len;
 
-	len = 0;
+	len = 1;
 	if (n < 0)
 		len++;
-	while (n != 0)
+	while (n > 9 || n < -9)
 	{
 		n /= 10;
 		len++;
@@ -28,27 +27,31 @@ static size_t	intlen(int n)
 	return (len);
 }
 
+static int	ft_abs(int n)
+{
+	return (n * (-1 + 2 * (n > 0)));
+}
+
 char	*ft_itoa(int n)
 {
 	char	*result;
 	size_t	len;
+	int		sign;
 
 	len = intlen(n);
 	result = (char *) malloc(len + 1);
-	printf("%d\n", len);
 	if (!result)
 		return (NULL);
+	sign = (n > 0) - (n < 0);
+	*result = '0';
 	if (n < 0)
-	{
 		*result = '-';
-		n*=-1;
-	}
 	result += len;
 	*result-- = '\0';
 	while (n != 0)
 	{
-		*result-- = '0' + (n % 10);
+		*result-- = '0' + ft_abs(n % 10);
 		n /= 10;
 	}
-	return (result);
+	return (result + (sign == 1));
 }

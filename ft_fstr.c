@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.C                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 16:58:33 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 16:58:33 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/05 18:18:28 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/05 18:18:28 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 #include "libft.h"
 
-int	main(int argc, char const *argv[])
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	(void) argc;
-	(void) argv;
-	char src[] = "test";
-	char dest[] = "test";
-	int n = 5;
-	
-	printf("FT: %s\n", ft_strtrim("wsh la street", " "));
-	
-	return (0);
+	char			*result;
+	unsigned int	i;
+
+	result = (char *) malloc(ft_strlen(s) + 1);
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		result[i] = (*f)(i, s[i]);
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		(*f)(i, s[i]);
+		i++;
+	}
 }

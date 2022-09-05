@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   ft_fd_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 16:58:33 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 16:58:33 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/05 18:52:05 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/05 18:52:05 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
+#include <unistd.h>
 #include "libft.h"
 
-int	main(int argc, char const *argv[])
+void	ft_putchar_fd(char c, int fd)
 {
-	(void) argc;
-	(void) argv;
-	char src[] = "test";
-	char dest[] = "test";
-	int n = 5;
-	
-	printf("FT: %s\n", ft_strtrim("wsh la street", " "));
-	
-	return (0);
+	write(fd, &c, 1);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	while (*s)
+	{
+		ft_putchar_fd(*s, fd);
+		s++;
+	}
+}
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	ft_putstr_fd(ft_itoa(n), fd);
 }

@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 16:58:33 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 16:58:33 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/05 20:14:17 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/05 20:14:17 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
 #include "libft.h"
 
-int	main(int argc, char const *argv[])
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	(void) argc;
-	(void) argv;
-	char src[] = "test";
-	char dest[] = "test";
-	int n = 5;
-	
-	printf("FT: %s\n", ft_strtrim("wsh la street", " "));
-	
-	return (0);
+	new->next = *lst;
+	*lst = new;
 }

@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include "libft.h"
 
-// TODO Finir
 static int	strcontains(const char *str, char c)
 {
 	while (*str)
