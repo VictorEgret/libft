@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
+// TODO check l'appel a f (**f)
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*tmp;
@@ -23,7 +24,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	tmp = lst;
 	while (tmp)
 	{
-		ft_lstadd_front(&tmp, ft_lstnew((**f)(tmp->content))); // TODO check l'appel a f (**f)
+		ft_lstadd_front(&tmp, ft_lstnew((**f)(tmp->content)));
 		tmp = tmp->next;
 	}
 	ft_lstclear(&lst, del);

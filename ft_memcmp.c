@@ -12,22 +12,16 @@
 
 #include <string.h>
 
-static int	only_one(int i)
-{
-	return (i > 0) - (i < 0);
-}
-
-// TODO Finir
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	if (n != 0)
 	{
-		while (*((unsigned char *) s1) == *((unsigned char *) s2) && n--)
+		while (*((unsigned char *) s1) == *((unsigned char *) s2) && --n)
 		{
 			s1++;
 			s2++;
 		}
-		return (only_one(*((unsigned char *) s1) - *((unsigned char *) s2)));
+		return (*((unsigned char *) s1) - *((unsigned char *) s2));
 	}
 	return (0);
 }
