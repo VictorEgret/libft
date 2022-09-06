@@ -29,35 +29,6 @@ void	*divtest(void *e)
 	return (new);
 }
 
-t_list
-	*ft_lstmap2(t_list *lst, void *(*f)(void*), void (*del)(void *))
-{
-	t_list	*first;
-	t_list	*new;
-
-	if (!f || !del)
-		return (NULL);
-	first = NULL;
-	while (lst)
-	{
-		if (!(new = ft_lstnew((*f)(lst->content))))
-		{
-			while (first)
-			{
-				new = first->next;
-				(*del)(first->content);
-				free(first);
-				first = new;
-			}
-			lst = NULL;
-			return (NULL);
-		}
-		ft_lstadd_back(&first, new);
-		lst = lst->next;
-	}
-	return (first);
-}
-
 int	main(int argc, char const *argv[])
 {
 	(void) argc;
@@ -71,9 +42,9 @@ int	main(int argc, char const *argv[])
     for (i=4; i>=0; i--)
        ft_lstadd_front(&start, ft_lstnew(&arr[i]));
     printf("Created integer linked list is \n");
-	//mapped = ft_lstmap(start, &divtest, &free);
+	mapped = ft_lstmap(start, &divtest, &free);
 	//ft_lstclear(&start, &free);
-    ft_lstiter(start, &pinl);
+    ft_lstiter(mapped, &pinl);
 	
 	return (0);
 }
