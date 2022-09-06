@@ -1,44 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.C                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 18:18:28 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 18:18:28 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/05 23:26:48 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/05 23:26:48 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	char			*result;
-	unsigned int	i;
+	t_list	*last;
 
-	result = (char *) malloc(ft_strlen(s) + 1);
-	if (!result)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	if (!lst)
+		return ;
+	last = ft_lstlast(*lst);
+	while (*lst || last)
 	{
-		result[i] = (*f)(i, s[i]);
-		i++;
+		ft_lstdelone(last, del);
+		last = ft_lstlast(*lst);
 	}
-	result[i] = '\0';
-	return (result);
-}
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
-{
-	unsigned int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		(*f)(i, &s[i]);
-		i++;
-	}
+	*lst = NULL;
 }

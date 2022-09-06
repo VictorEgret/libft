@@ -1,44 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.C                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 18:18:28 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 18:18:28 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/05 23:13:42 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/05 23:13:42 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char			*result;
-	unsigned int	i;
+	t_list	*last;
 
-	result = (char *) malloc(ft_strlen(s) + 1);
-	if (!result)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	if (!*lst)
 	{
-		result[i] = (*f)(i, s[i]);
-		i++;
+		*lst = new;
+		return ;
 	}
-	result[i] = '\0';
-	return (result);
-}
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
-{
-	unsigned int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		(*f)(i, &s[i]);
-		i++;
-	}
+	last = ft_lstlast(*lst);
+	last->next = new;
 }

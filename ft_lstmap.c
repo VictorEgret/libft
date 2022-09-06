@@ -1,44 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.C                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 18:18:28 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 18:18:28 by vegret           ###   ########.fr       */
+/*   Created: 2022/09/05 23:35:45 by vegret            #+#    #+#             */
+/*   Updated: 2022/09/05 23:35:45 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char			*result;
-	unsigned int	i;
+	t_list	*tmp;
+	t_list	*mapped;
 
-	result = (char *) malloc(ft_strlen(s) + 1);
-	if (!result)
+	if (!lst || !f)
 		return (NULL);
-	i = 0;
-	while (s[i])
+	tmp = lst;
+	while (tmp)
 	{
-		result[i] = (*f)(i, s[i]);
-		i++;
+		ft_lstadd_front(&tmp, ft_lstnew((**f)(tmp->content))); // TODO check l'appel a f (**f)
+		tmp = tmp->next;
 	}
-	result[i] = '\0';
-	return (result);
-}
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
-{
-	unsigned int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		(*f)(i, &s[i]);
-		i++;
-	}
+	ft_lstclear(&lst, del);
+	return (mapped);
 }
