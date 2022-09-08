@@ -21,7 +21,7 @@ int	main(int argc, char const *argv[])
 	//(void) argc;
 	//(void) argv;
 	char s[] = {0, 1, 2, 3, 4, 5};
-	printf("%s", memchr(s, 2 + 256, 3));
+	printf("%p", ft_calloc(SSIZE_MAX, SSIZE_MAX));
 	//printf("%s", ft_memchr(s, 2 + 256, 3));
 	return (0);
 }
