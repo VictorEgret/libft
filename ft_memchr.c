@@ -12,14 +12,12 @@
 
 #include <string.h>
 
-// Fail les test quand on cast avec unsigned char
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	while (n)
+	while (n--)
 	{
-		if (*((char *) s) == c)
+		if (*((unsigned char *) s) == (unsigned char) c)
 			return ((void *) s);
-		n--;
 		s++;
 	}
 	return (NULL);
