@@ -24,7 +24,7 @@ static int	ft_strcontains(const char *str, char c)
 	return (0);
 }
 
-static size_t end(char const *s1, char const *set)
+static size_t	end(char const *s1, char const *set)
 {
 	size_t	end;
 
@@ -45,10 +45,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	len = end(s1, set);
 	while (s1[i])
+	{
 		if (ft_strcontains(set, s1[i++]))
 			len--;
 		else
-			break;
+			break ;
+	}
 	result = (char *) malloc(len + 1);
 	if (!result)
 		return (NULL);
