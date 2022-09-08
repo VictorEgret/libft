@@ -21,6 +21,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	result_len = ft_strlen(s) - start;
 	if (result_len > len)
 		result_len = len;
+	if (result_len < 0)
+		return (NULL);
 	result = malloc(result_len + 1);
 	if (!result)
 		return (NULL);
