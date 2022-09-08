@@ -21,7 +21,6 @@ int	main(int argc, char const *argv[])
 	//(void) argc;
 	//(void) argv;
 	char s[] = {0, 1, 2, 3, 4, 5};
-	printf("%p", ft_calloc(INT_MAX, INT_MAX));
-	//printf("%s", ft_memchr(s, 2 + 256, 3));
+	printf("%s", ft_substr("tripouille", 100, 1));
 	return (0);
 }
