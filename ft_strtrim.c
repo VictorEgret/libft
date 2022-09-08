@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
 
-static int	strcontains(const char *str, char c)
+static int	ft_strcontains(const char *str, char c)
 {
 	while (*str)
 	{
@@ -24,6 +25,17 @@ static int	strcontains(const char *str, char c)
 	return (0);
 }
 
+static size_t end(char const *s1, char const *set)
+{
+	size_t	end;
+
+	end = ft_strlen(s1) - 1;
+	while (ft_strcontains(set, s1[end]))
+		end--;
+	return (++end);
+}
+
+// TODO Finir
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;
@@ -31,19 +43,20 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	len;
 
 	i = 0;
-	len = 0;
+	len = end(s1, set);
 	while (s1[i])
-		if (!strcontains(set, s1[i++]))
-			len++;
+		if (ft_strcontains(set, s1[i++]))
+			len--;
+		else
+			break;
 	result = (char *) malloc(len + 1);
 	if (!result)
 		return (NULL);
-	i = 0;
-	while (s1[i])
+	i--;
+	while (s1[i] && len)
 	{
-		if (!strcontains(set, s1[i]))
-			*result++ = s1[i];
-		i++;
+		printf("%d, %c\n", i, s1[i]);
+		*result++ = s1[i++];
 	}
 	*result = '\0';
 	return (result - len);

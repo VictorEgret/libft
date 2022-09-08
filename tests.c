@@ -12,39 +12,72 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <limits.h>
 #include "libft.h"
 
-void	pinl(void *e)
+static void		ft_print_result(char const *s)
 {
-	printf("%d, ", *(int *) e);
+	int		len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	write(1, s, len);
 }
 
-void	*divtest(void *e)
+static void		check_strtrim(char *s1, char *set)
 {
-	int *new;
+	char	*res;
 
-	new = malloc(sizeof(int));
-	*new = *(int *)e / 2;
-	return (new);
+	if (!(res = ft_strtrim(s1, set)))
+		ft_print_result("NULL");
+	else
+		ft_print_result(res);
+	if (res == s1)
+		ft_print_result("\nA new string was not returned");
+	else
+		free(res);
 }
 
 int	main(int argc, char const *argv[])
 {
-	(void) argc;
-	(void) argv;
-	t_list *start = NULL;
-	t_list *mapped = NULL;
- 
-    // Create and print an int linked list
-    unsigned int_size = sizeof(int);
-    int arr[] = {10, 20, 30, 40, 50}, i;
-    for (i=4; i>=0; i--)
-       ft_lstadd_front(&start, ft_lstnew(&arr[i]));
-    printf("Created integer linked list is \n");
-	mapped = ft_lstmap(start, &divtest, &free);
-	//ft_lstclear(&start, &free);
-    ft_lstiter(mapped, &pinl);
-	
+	//(void) argc;
+	//(void) argv;
+	int		arg;
+	char	set [] = "\t \n";
+
+	if (argc == 1)
+		return (0);
+	else if ((arg = atoi(argv[1])) == 1)
+	{
+		char s1[] = "lorem \n ipsum \t dolor \n sit \t amet";
+		check_strtrim(s1, set);
+	}
+	else if (arg == 2)
+	{
+		char s1[] = "lorem ipsum dolor sit amet \n \t ";
+		check_strtrim(s1, set);
+	}
+	else if (arg == 3)
+	{
+		char s1[] = " \n \t lorem ipsum dolor sit amet";
+		check_strtrim(s1, set);
+	}
+	else if (arg == 4)
+	{
+		char s1[] = "  \n  \t  lorem \n ipsum \t dolor \n sit \t amet  \t \n ";
+		check_strtrim(s1, set);
+	}
+	else if (arg == 5)
+	{
+		char s1[] = "          ";
+		check_strtrim(s1, set);
+	}
+	else if (arg == 6)
+	{
+		char s1[] = "   test  test    ";
+		check_strtrim(s1, set);
+	}
 	return (0);
 }

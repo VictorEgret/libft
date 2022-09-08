@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-// TODO Finir
+// TODO Opti
 static void	strings_copy(char *str, char c, char **strs)
 {
 	int	i;
