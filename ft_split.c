@@ -63,7 +63,7 @@ static void	strings_alloc(char *str, char c, char **strs)
 			strs[k] = malloc(sizeof strs[k] * (i - start + 1));
 			if (!strs[k])
 			{
-				free_tab(strs, k);
+				free_tab((void **) strs, k);
 				return ;
 			}
 			strs[k][i - start] = '\0';
