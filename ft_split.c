@@ -36,6 +36,13 @@ static void	strings_copy(char *str, char c, char **strs)
 	}
 }
 
+static void	free_tab(void **tab, size_t size)
+{
+	while (size--)
+		free(tab[size]);
+	free(tab);
+}
+
 static void	strings_alloc(char *str, char c, char **strs)
 {
 	int	i;
@@ -54,6 +61,11 @@ static void	strings_alloc(char *str, char c, char **strs)
 		if (i > start)
 		{
 			strs[k] = malloc(sizeof strs[k] * (i - start + 1));
+			if (!strs[k])
+			{
+				free_tab(strs, k);
+				return ;
+			}
 			strs[k][i - start] = '\0';
 			k++;
 		}
