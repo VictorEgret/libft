@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
 
 static int	ft_strcontains(const char *str, char c)
@@ -34,7 +35,6 @@ static size_t	end(char const *s1, char const *set)
 	return (++end);
 }
 
-// TODO Check
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;
@@ -44,7 +44,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	i = 0;
 	len = end(s1, set);
-	while (s1[i])
+	while (s1[i] && len)
 	{
 		if (ft_strcontains(set, s1[i++]))
 			len--;
@@ -57,9 +57,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i--;
 	j = 0;
 	while (s1[i] && j < len)
-	{
 		result[j++] = s1[i++];
-	}
 	result[j] = '\0';
 	return (result);
 }

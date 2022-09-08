@@ -20,6 +20,8 @@ int	main(int argc, char const *argv[])
 {
 	//(void) argc;
 	//(void) argv;
-
+	char s1[] = "     ";
+	char set[] = "\t \n";
+	printf("%s", ft_strtrim(s1, set));
 	return (0);
 }
