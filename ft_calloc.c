@@ -11,19 +11,14 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*result;
 
-	if (nmemb == 0 || size == 0)
-	{
-		nmemb = 1;
-		size = 1;
-	}
-	printf("%d %d\n", nmemb, size);
+	if (nmemb * size > 2147483647)
+		return (NULL);
 	result = malloc(nmemb * size);
 	if (result)
 		ft_bzero(result, nmemb * size);
