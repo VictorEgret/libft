@@ -26,12 +26,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	result = malloc(result_len + 1);
 	if (!result)
 		return (NULL);
-	while (s[start] && start < result_len)
-	{
-		*result++ = s[start];
-		start++;
-	}
-	
-	*result = '\0';
-	return (result - result_len);
+	result = ft_memcpy(result, s + start, result_len);
+	result[result_len] = '\0';
+	return (result);
 }
