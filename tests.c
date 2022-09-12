@@ -20,7 +20,12 @@ int	main(int argc, char const *argv[])
 {
 	//(void) argc;
 	//(void) argv;
-	char test[] = "sa mere la pute";
-	ft_split(test, ' ');
+	char test[] = "    ";
+	char c = '\0';
+	char **splitted = ft_split(test, c);
+	for (int i = 0; i < 1; i++)
+	{
+		printf("tab[%d] = %s\n", i, splitted[i]);
+	}	
 	return (0);
 }
