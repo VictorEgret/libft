@@ -20,7 +20,7 @@ int	main(int argc, char const *argv[])
 {
 	//(void) argc;
 	//(void) argv;
-	char s[] = {0, 1, 2, 3, 4, 5};
-	printf("%s", ft_substr("tripouille", 100, 1));
+	char test[] = "sa mere la pute";
+	ft_split(test, ' ');
 	return (0);
 }

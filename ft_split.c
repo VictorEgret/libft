@@ -11,101 +11,41 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-// TODO Opti
-static void	strings_copy(char *str, char c, char **strs)
+// TODO Finir
+static int word_count(char const *s, char c)
 {
-	int	i;
-	int	k;
-	int	start;
+	int	result;
+	int	on_word;
 
-	i = 0;
-	k = 0;
-	while (str[i])
+	result = 0;
+	on_word = 0;
+	while (*s)
 	{
-		while (str[i] && str[i] == c)
-			i++;
-		start = i;
-		while (str[i] && str[i] != c)
+		if (*s == c)
 		{
-			strs[k][i - start] = str[i];
-			i++;
-		}
-		if (i > start)
-			k++;
-	}
-}
-
-static void	free_tab(void **tab, size_t size)
-{
-	while (size--)
-		free(tab[size]);
-	free(tab);
-}
-
-static void	strings_alloc(char *str, char c, char **strs)
-{
-	int	i;
-	int	k;
-	int	start;
-
-	i = 0;
-	k = 0;
-	while (str[i])
-	{
-		while (str[i] && str[i] == c)
-			i++;
-		start = i;
-		while (str[i] && str[i] != c)
-			i++;
-		if (i > start)
-		{
-			strs[k] = malloc(sizeof strs[k] * (i - start + 1));
-			if (!strs[k])
+			if (on_word)
 			{
-				free_tab((void **) strs, k);
-				return ;
+				result++;
+				on_word = 0;
 			}
-			strs[k][i - start] = '\0';
-			k++;
 		}
+		else
+			on_word = 1;
+		s++;
 	}
-}
-
-static char	**words_alloc(char *str, char c, int *len_strs)
-{
-	char	**strs;
-	int		i;
-	int		start;
-
-	i = 0;
-	while (str[i])
-	{
-		while (str[i] && str[i] == c)
-			i++;
-		start = i;
-		while (str[i] && str[i] != c)
-			i++;
-		if (i > start)
-			(*len_strs)++;
-	}
-	strs = malloc(sizeof strs * (*len_strs + 1));
-	if (strs == NULL)
-		return (NULL);
-	strs[*len_strs] = NULL;
-	return (strs);
+	return (result + on_word);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**strs;
-	int		len_strs;
+	int		words;
 
-	len_strs = 0;
-	strs = words_alloc((char *) s, c, &len_strs);
-	if (len_strs == 0)
-		return (strs);
-	strings_alloc((char *) s, c, strs);
-	strings_copy((char *) s, c, strs);
+	words = word_count(s, c);
+	strs = malloc(words * sizeof(char *));
+	if (!strs)
+		return (NULL);
 	return (strs);
 }
