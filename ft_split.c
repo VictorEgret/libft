@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
 // TODO Finir
 static int	word_count(char const *s, char c)
@@ -86,6 +88,7 @@ char	**ft_split(char const *s, char c)
 	if (!splitted)
 		return (NULL);
 	i = 0;
+	word = 0;
 	while (word < words)
 	{
 		splitted[word] = copy_next_word(s, c, &i);
