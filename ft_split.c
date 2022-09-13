@@ -11,10 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
 
-// TODO Finir
 static int	word_count(char const *s, char c)
 {
 	int	result;

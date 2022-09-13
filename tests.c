@@ -20,12 +20,8 @@ int	main(int argc, char const *argv[])
 {
 	//(void) argc;
 	//(void) argv;
-	char test[] = "--1-2--3---4----5-----42--";
-	char c = '-';
-	char **splitted = ft_split(test, c);
-	for (int i = 0; i < 6; i++)
-	{
-		printf("tab[%d] = %s\n", i, splitted[i]);
-	}	
+	char *s = ft_substr("tripouille", 100, 1);
+	printf("%s\n", s);
+	printf("%d\n", strcmp(s, ""));
 	return (0);
 }
