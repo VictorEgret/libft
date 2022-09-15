@@ -30,6 +30,7 @@ bonus: $(OBJS) $(OBJS_B)
 
 clean: 
 	rm -f $(OBJS)
+	rm -f $(OBJS_B)
 
 fclean: 	clean
 	rm -f $(NAME)
