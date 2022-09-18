@@ -42,14 +42,15 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	j;
 	size_t	len;
 
+	if (!s1 || !set)
+		return (NULL);
 	i = 0;
 	len = end(s1, set);
 	while (s1[i] && len)
 	{
-		if (ft_strcontains(set, s1[i++]))
-			len--;
-		else
+		if (!ft_strcontains(set, s1[i++]))
 			break ;
+		len--;
 	}
 	result = (char *) malloc(len + 1);
 	if (!result)
