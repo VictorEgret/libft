@@ -42,7 +42,7 @@ char	*ft_itoa(int n)
 	result = (char *) malloc(len + 1);
 	if (!result)
 		return (NULL);
-	sign = (n > 0) - (n < 0);
+	sign = (n > 0);
 	*result = '0';
 	if (n < 0)
 		*result = '-';
@@ -53,5 +53,5 @@ char	*ft_itoa(int n)
 		*result-- = '0' + ft_abs(n % 10);
 		n /= 10;
 	}
-	return (result + (sign == 1));
+	return (result + sign);
 }
