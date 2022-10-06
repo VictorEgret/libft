@@ -35,7 +35,7 @@ static size_t	ft_strnlen(char *str, size_t n)
 	size_t	len;
 
 	len = 0;
-	while (str[len] && len < n)
+	while (len < n && str[len])
 		len++;
 	return (len);
 }
