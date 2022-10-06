@@ -45,7 +45,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	l;
 
 	l = ft_strnlen(dst, size);
-	if (l == size)
+	if (!size || l == size)
 		return (l + ft_strlen(src));
 	return (l + ft_strlcpy(dst + l, src, size - l));
 }
