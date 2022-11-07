@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:01:37 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/07 13:25:34 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/07 13:55:20 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*result;
 
-	if (size > 0 && nmemb > ((size_t) - 1 / size))
+	if (size > 0 && nmemb > ((size_t) -1) / size)
 		return (NULL);
 	result = malloc(nmemb * size);
 	if (result)
