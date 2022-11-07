@@ -3,6 +3,7 @@ SRCDIR = ./
 INCLUDESDIR = ./
 CC = gcc
 AR = ar rc
+CFLAGS = -Wall -Wextra -Werror
 SRCS = $(SRCDIR)ft_atoi.c $(SRCDIR)ft_bzero.c $(SRCDIR)ft_calloc.c $(SRCDIR)ft_isalnum.c $(SRCDIR)ft_isalpha.c \
 		$(SRCDIR)ft_isascii.c $(SRCDIR)ft_isdigit.c $(SRCDIR)ft_isprint.c $(SRCDIR)ft_memchr.c $(SRCDIR)ft_memcmp.c \
 		$(SRCDIR)ft_memcpy.c $(SRCDIR)ft_memmove.c $(SRCDIR)ft_memset.c $(SRCDIR)ft_strchr.c $(SRCDIR)ft_strdup.c \
@@ -16,7 +17,7 @@ OBJS = $(SRCS:.c=.o)
 OBJS_B = $(SRCS_B:.c=.o)
 
 .c.o: 
-	$(CC) -Wall -Wextra -Werror -c $< -o $(<:.c=.o) -I $(INCLUDESDIR)
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(INCLUDESDIR)
 
 all: 		$(NAME)
 
