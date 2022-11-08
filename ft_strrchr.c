@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_to.c                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 19:45:55 by vegret            #+#    #+#             */
-/*   Updated: 2022/08/31 19:45:55 by vegret           ###   ########.fr       */
+/*   Created: 2022/11/08 18:09:33 by vegret            #+#    #+#             */
+/*   Updated: 2022/11/08 18:10:15 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
-{
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
-}
+#include "libft.h"
 
-int	ft_tolower(int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	return (c);
+	int	i;
+
+	i = ft_strlen(s);
+	while (i >= 0)
+	{
+		if (s[i] == (unsigned char) c)
+			return ((char *) &s[i]);
+		i--;
+	}
+	return (NULL);
 }

@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strl.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 00:57:13 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/08 15:06:13 by vegret           ###   ########.fr       */
+/*   Created: 2022/11/08 18:05:26 by vegret            #+#    #+#             */
+/*   Updated: 2022/11/08 18:08:41 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	src_length;
-	size_t	i;
-
-	src_length = ft_strlen(src);
-	if (size == 0)
-		return (src_length);
-	i = 0;
-	while (i < src_length && --size)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (src_length);
-}
-
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	l;
 
-	if (!size)
+	if (!dst)
 		l = 0;
 	else
 		l = ft_strlen(dst);

@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 19:44:46 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/08 18:10:00 by vegret           ###   ########.fr       */
+/*   Created: 2022/11/08 18:06:12 by vegret            #+#    #+#             */
+/*   Updated: 2022/11/08 18:08:38 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strchr(const char *s, int c)
+int	ft_toupper(int c)
 {
-	while (*s)
-	{
-		if (*s == (unsigned char) c)
-			return ((char *) s);
-		s++;
-	}
-	if (c == 0)
-		return ((char *) s);
-	return (NULL);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }
