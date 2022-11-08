@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 00:57:13 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/08 12:59:20 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 15:06:13 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	l;
 
-	l = ft_strlen(dst);
+	if (!size)
+		l = 0;
+	else
+		l = ft_strlen(dst);
 	if (l > size)
 		l = size;
 	if (!size || l == size)
