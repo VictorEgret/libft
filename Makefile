@@ -10,7 +10,7 @@ SRCS = $(SRCDIR)ft_atoi.c $(SRCDIR)ft_bzero.c $(SRCDIR)ft_calloc.c $(SRCDIR)ft_i
 		$(SRCDIR)ft_strlcpy.c $(SRCDIR)ft_strlen.c $(SRCDIR)ft_strncmp.c $(SRCDIR)ft_strnstr.c $(SRCDIR)ft_strtrim.c \
 		$(SRCDIR)ft_tolower.c $(SRCDIR)ft_toupper.c $(SRCDIR)ft_substr.c $(SRCDIR)ft_strjoin.c $(SRCDIR)ft_itoa.c \
 		$(SRCDIR)ft_split.c $(SRCDIR)ft_strmapi.c $(SRCDIR)ft_strlcat.c $(SRCDIR)ft_striteri.c $(SRCDIR)ft_putendl_fd.c \
-		$(SRCDIR)ft_putnbr_fd.c $(SRCDIR)ft_putstr_fd.c $(SRCDIR)ft_putchar_fd.c
+		$(SRCDIR)ft_putnbr_fd.c $(SRCDIR)ft_putstr_fd.c $(SRCDIR)ft_putchar_fd.c $(SRCDIR)ft_strrchr.c
 
 SRCS_B = $(SRCDIR)ft_lstnew.c $(SRCDIR)ft_lstadd_front.c $(SRCDIR)ft_lstsize.c $(SRCDIR)ft_lstlast.c \
 		$(SRCDIR)ft_lstadd_back.c $(SRCDIR)ft_lstdelone.c $(SRCDIR)ft_lstclear.c $(SRCDIR)ft_lstiter.c \
