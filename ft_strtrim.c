@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.C                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 23:27:16 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/02 23:27:16 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:51:30 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 
-static int	ft_strcontains(const char *str, char c)
+static int	strcontains(const char *str, char c)
 {
 	while (*str)
 	{
@@ -30,7 +29,7 @@ static size_t	end(char const *s1, char const *set)
 	size_t	end;
 
 	end = ft_strlen(s1) - 1;
-	while (ft_strcontains(set, s1[end]))
+	while (strcontains(set, s1[end]))
 		end--;
 	return (++end);
 }
@@ -48,11 +47,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = end(s1, set);
 	while (s1[i] && len)
 	{
-		if (!ft_strcontains(set, s1[i++]))
+		if (!strcontains(set, s1[i++]))
 			break ;
 		len--;
 	}
-	result = (char *) malloc(len + 1);
+	result = malloc(len + 1);
 	if (!result)
 		return (NULL);
 	i--;

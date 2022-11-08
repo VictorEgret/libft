@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:13:42 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 23:13:42 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:24:03 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,10 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*last;
-
 	if (lst)
 	{
 		if (*lst)
-		{
-			last = ft_lstlast(*lst);
-			last->next = new;
-		}
+			ft_lstlast(*lst)->next = new;
 		else
 			*lst = new;
 	}

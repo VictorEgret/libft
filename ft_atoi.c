@@ -6,10 +6,11 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 23:15:41 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/01 23:15:41 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:59:44 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "libft.h"
 
 static int	ft_isspace(int c)
@@ -32,6 +33,10 @@ int	ft_atoi(const char *nptr)
 		if (nptr[i++] == '-')
 			sign = -1;
 	while (ft_isdigit(nptr[i]))
+	{
+		if (result * 10 + nptr[i] - 48 < result)
+			return (-1 * (sign == 1));
 		result = result * 10 + nptr[i++] - 48;
+	}
 	return (result * sign);
 }

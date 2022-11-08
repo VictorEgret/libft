@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:02:22 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 17:02:22 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:08:46 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	word_count(char const *s, char c)
 {
-	int	result;
+	int	count;
 	int	on_word;
 
-	result = 0;
+	count = 0;
 	on_word = 0;
 	while (*s)
 	{
@@ -25,7 +25,7 @@ static int	word_count(char const *s, char c)
 		{
 			if (on_word)
 			{
-				result++;
+				count++;
 				on_word = 0;
 			}
 		}
@@ -33,21 +33,27 @@ static int	word_count(char const *s, char c)
 			on_word = 1;
 		s++;
 	}
-	return (result + on_word);
+	return (count + on_word);
 }
 
-static void	*free_tab2d(char **tab, int start)
+static void	*free_tab2d(char **tab)
 {
-	while (*tab[start])
+	int	i;
+
+	i = 0;
+	if (tab)
 	{
-		free(tab[start]);
-		start++;
+		while (*tab[i])
+		{
+			free(tab[i]);
+			i++;
+		}
+		free(tab);
 	}
-	free(tab);
 	return (NULL);
 }
 
-static char	*copy_next_word(char const	*s, char c, int *i)
+static char	*copy_next_word(char const *s, char c, int *i)
 {
 	char	*word;
 	int		tmp;
@@ -73,7 +79,7 @@ static char	*copy_next_word(char const	*s, char c, int *i)
 
 char	**ft_split(char const *s, char c)
 {
-	char	**splitted;
+	char	**split;
 	int		words;
 	int		word;
 	int		i;
@@ -81,18 +87,18 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words = word_count(s, c);
-	splitted = malloc((words + 1) * sizeof(char *));
-	if (!splitted)
+	split = malloc((words + 1) * sizeof(char *));
+	if (!split)
 		return (NULL);
 	i = 0;
 	word = 0;
 	while (word < words)
 	{
-		splitted[word] = copy_next_word(s, c, &i);
-		if (!splitted[word])
-			return (free_tab2d(splitted, 0));
+		split[word] = copy_next_word(s, c, &i);
+		if (!split[word])
+			return (free_tab2d(split));
 		word++;
 	}
-	splitted[words] = NULL;
-	return (splitted);
+	split[words] = NULL;
+	return (split);
 }

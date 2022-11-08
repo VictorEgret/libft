@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 00:57:13 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/02 00:57:13 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 12:59:20 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	if (size == 0)
 		return (src_length);
 	i = 0;
-	while (i < src_length && i < size - 1)
+	while (i < src_length && --size)
 	{
 		dst[i] = src[i];
 		i++;
@@ -30,21 +30,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (src_length);
 }
 
-static size_t	ft_strnlen(char *str, size_t n)
-{
-	size_t	len;
-
-	len = 0;
-	while (len < n && str[len])
-		len++;
-	return (len);
-}
-
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	l;
 
-	l = ft_strnlen(dst, size);
+	l = ft_strlen(dst);
+	if (l > size)
+		l = size;
 	if (!size || l == size)
 		return (l + ft_strlen(src));
 	return (l + ft_strlcpy(dst + l, src, size - l));

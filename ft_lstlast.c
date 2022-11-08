@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:17:26 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 21:17:26 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:21:42 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*tmp;
-
 	if (lst)
 	{
-		tmp = lst;
-		while (tmp->next)
-			tmp = tmp->next;
-		return (tmp);
+		while (lst->next)
+			lst = lst->next;
 	}
 	return (lst);
 }

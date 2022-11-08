@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.C                                       :+:      :+:    :+:   */
+/*   ft_fstr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:18:28 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 18:18:28 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:50:51 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (!s || !f)
 		return (NULL);
-	result = (char *) malloc(ft_strlen(s) + 1);
+	result = malloc(ft_strlen(s) + 1);
 	if (!result)
 		return (NULL);
 	i = 0;

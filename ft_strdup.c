@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:19:26 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/02 15:19:26 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:03:43 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ char	*ft_strdup(const char *s)
 	char	*result;
 	int		i;
 
-	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	result = malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
 		result[i] = s[i];
 		i++;

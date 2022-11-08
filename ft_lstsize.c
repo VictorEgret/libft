@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:13:40 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/05 21:13:40 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:19:56 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	t_list	*tmp;
 	int		size;
 
 	size = 0;
-	tmp = lst;
-	while (tmp)
+	while (lst)
 	{
 		size++;
-		tmp = tmp->next;
+		lst = lst->next;
 	}
 	return (size);
 }

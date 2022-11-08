@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:55:46 by vegret            #+#    #+#             */
-/*   Updated: 2022/09/04 16:55:46 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:50:58 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_itoa(int n)
 	int		sign;
 
 	len = intlen(n);
-	result = (char *) malloc(len + 1);
+	result = malloc(len + 1);
 	if (!result)
 		return (NULL);
 	sign = (n > 0);
