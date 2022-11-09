@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:40:17 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/08 13:36:26 by vegret           ###   ########.fr       */
+/*   Updated: 2022/11/09 12:12:12 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (ft_strlen(s) <= start)
-	{
-		result = malloc(sizeof(char));
-		*result = '\0';
-		return (result);
-	}
-	result_len = ft_strlen(s) - start;
+	result_len = ft_strlen(s);
+	if (result_len <= start)
+		result_len = 0;
+	else
+		result_len -= start;
 	if (result_len > len)
 		result_len = len;
 	result = malloc(result_len + 1);
