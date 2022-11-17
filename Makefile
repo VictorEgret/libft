@@ -47,12 +47,10 @@ all:		$(NAME)
 
 bonus:		$(OBJ) $(OBJ_B)
 			@$(AR) $(NAME) $(OBJ) $(OBJ_B)
-			@ranlib $(NAME)
 			@echo "$(GREEN)libft compiled with bonus!$(DEF_COLOR)"
 
 $(NAME):	$(OBJ)
 			@$(AR) $(NAME) $(OBJ)
-			@ranlib $(NAME)
 			@echo "$(GREEN)libft compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
