@@ -1,5 +1,5 @@
 <h1 align="center"><u>libft</u></h1>
-My libft project from 42
+42 Project containing a lot of useful basic functions from the libc
 
 **Score** :
 <br>
