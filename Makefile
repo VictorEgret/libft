@@ -28,7 +28,8 @@ SRC_FILES	=	ft_atoi ft_bzero ft_calloc ft_isalnum ft_isalpha ft_isascii \
 				ft_memset ft_strchr ft_strdup ft_strlcpy ft_strlen ft_strncmp \
 				ft_strnstr ft_strtrim ft_tolower ft_toupper ft_substr ft_strjoin \
 				ft_itoa ft_split ft_strmapi ft_strlcat ft_striteri ft_putendl_fd \
-				ft_putnbr_fd ft_putstr_fd ft_putchar_fd ft_strrchr
+				ft_putnbr_fd ft_putstr_fd ft_putchar_fd ft_strrchr \
+				get_next_line get_next_line_utils
 
 SRC_B_FILES	=	ft_lstnew ft_lstadd_front ft_lstsize ft_lstlast ft_lstadd_back \
 				ft_lstdelone ft_lstclear ft_lstiter ft_lstmap
