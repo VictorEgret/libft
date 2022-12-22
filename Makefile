@@ -8,6 +8,7 @@ CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 RM			= rm -f
 AR			= ar rcs
+SMAKE		= make --no-print-directory
 
 # Colors
 
@@ -48,9 +49,7 @@ OBJF		=	.cache_exists
 
 all:		$(NAME)
 
-bonus:		$(OBJ)
-			@$(AR) $(NAME) $(OBJ)
-			@echo "$(GREEN)libft compiled with bonus!$(DEF_COLOR)"
+bonus:		all
 
 $(NAME):	$(OBJ)
 			@$(AR) $(NAME) $(OBJ)
@@ -75,7 +74,26 @@ fclean:		clean
 
 re:			fclean all
 
+colorize:
+	@while read -r line; do \
+		if [ -z "$${line##*OK*}" ]; then \
+			printf "$(GREEN)"; \
+			printf "$$line"; \
+			printf "$(END)\n"; \
+		else \
+			if [ -z "$${line##*Error*}" ]; then \
+				printf "$(RED)"; \
+				printf "$$line"; \
+				printf "$(END)\n"; \
+			else \
+				printf "$$line"; \
+			fi \
+		fi \
+	done < tmp
+
 norm:
-			@norminette $(SRC) $(INCLUDE) | grep -v Norme | awk '{printf "$(GREEN)"} {print $0} {printf "$(END)"}'
+			@norminette $(SRC) $(INCLUDE) | grep -v Norme > tmp
+			@$(SMAKE) colorize
+			@$(RM) tmp
 
 .PHONY:		all clean fclean re norm
