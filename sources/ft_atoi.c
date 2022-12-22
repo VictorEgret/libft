@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 23:15:41 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/08 15:15:48 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/22 00:22:57 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_isspace(int c)
 
 int	ft_atoi(const char *nptr)
 {
-	long	result;
+	long result;
 	int		sign;
 	int		i;
 
