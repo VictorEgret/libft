@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 01:08:12 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/15 16:09:38 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/27 04:05:21 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,17 @@ typedef struct s_flag
 	int				precision;
 }				t_flag;
 
-int	ft_printf(const char *format, ...);
-int	handle_conv(const char *s, va_list args, t_flag *flag);
+int	handle_conv(int fd, const char *s, va_list args, t_flag *flag);
 int	handle_flags(const char *s, t_flag *flag);
-int	putchar_c(char c, t_flag *flag);
-int	putstr(char *str, t_flag *flag);
-int	putptr(void *ptr, t_flag *flag);
-int	putint(int n, t_flag *flag);
-int	putui(unsigned int n, t_flag *flag);
-int	putul_hex(unsigned long n, int upper, t_flag *flag);
-int	fill_after(t_flag *flag, int already_printed);
-int	fill_before(t_flag *flag, int nextlen);
-int	putzeros(t_flag *flag, int elen, int already_printed);
+int	putchar_c(int fd, char c, t_flag *flag);
+int	putstr(int fd, char *str, t_flag *flag);
+int	putptr(int fd, void *ptr, t_flag *flag);
+int	putint(int fd, int n, t_flag *flag);
+int	putui(int fd, unsigned int n, t_flag *flag);
+int	putul_hex(int fd, unsigned long n, int upper, t_flag *flag);
+int	fill_after(int fd, t_flag *flag, int already_printed);
+int	fill_before(int fd, t_flag *flag, int nextlen);
+int	putzeros(int fd, t_flag *flag, int elen, int already_printed);
 int	make_compatibility(int flags);
 int	hexlen(unsigned long n);
 

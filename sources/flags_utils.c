@@ -6,13 +6,13 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:56:13 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/14 14:56:21 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/27 03:59:27 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	putzeros(t_flag *flag, int elen, int already_printed)
+int	putzeros(int fd, t_flag *flag, int elen, int already_printed)
 {
 	int	printed;
 
@@ -24,7 +24,7 @@ int	putzeros(t_flag *flag, int elen, int already_printed)
 			elen += already_printed;
 			while (elen < flag->minimal_width)
 			{
-				printed += write(1, "0", 1);
+				printed += write(fd, "0", 1);
 				elen++;
 			}
 		}
@@ -32,7 +32,7 @@ int	putzeros(t_flag *flag, int elen, int already_printed)
 		{
 			while (elen < flag->precision)
 			{
-				printed += write(1, "0", 1);
+				printed += write(fd, "0", 1);
 				elen++;
 			}
 		}
@@ -40,7 +40,7 @@ int	putzeros(t_flag *flag, int elen, int already_printed)
 	return (printed);
 }
 
-int	fill_after(t_flag *flag, int already_printed)
+int	fill_after(int fd, t_flag *flag, int already_printed)
 {
 	int	printed;
 
@@ -50,7 +50,7 @@ int	fill_after(t_flag *flag, int already_printed)
 		flag->minimal_width -= already_printed;
 		while (flag->minimal_width > 0)
 		{
-			printed += write(1, " ", 1);
+			printed += write(fd, " ", 1);
 			flag->minimal_width--;
 		}
 	}
@@ -68,7 +68,7 @@ int	make_compatibility(int flags)
 	return (flags);
 }
 
-int	fill_before(t_flag *flag, int nextlen)
+int	fill_before(int fd, t_flag *flag, int nextlen)
 {
 	int	printed;
 
@@ -77,7 +77,7 @@ int	fill_before(t_flag *flag, int nextlen)
 	printed = 0;
 	while (nextlen < flag->minimal_width)
 	{
-		printed += write(1, " ", 1);
+		printed += write(fd, " ", 1);
 		nextlen++;
 	}
 	return (printed);

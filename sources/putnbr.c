@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:30:40 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/15 10:44:03 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/27 03:30:27 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static int	intlen(int n)
 	return (len);
 }
 
-static int	putint_aux(int n)
+static int	putint_aux(int fd, int n)
 {
 	if (n == -2147483648)
-		return (putstr("2147483648", NULL));
+		return (putstr(fd, "2147483648", NULL));
 	if (n < 10)
-		return (putchar_c(n + '0', NULL));
-	return (putint_aux(n / 10) + putint_aux(n % 10));
+		return (putchar_c(fd, n + '0', NULL));
+	return (putint_aux(fd, n / 10) + putint_aux(fd, n % 10));
 }
 
 static int	printinglen(int n, t_flag *flag)
@@ -47,26 +47,26 @@ static int	printinglen(int n, t_flag *flag)
 	return (len);
 }
 
-int	putint(int n, t_flag *flag)
+int	putint(int fd, int n, t_flag *flag)
 {
 	int	printed;
 
 	printed = 0;
 	if (!(flag && flag->flags & ZERO))
-		printed = fill_before(flag, printinglen(n, flag));
+		printed = fill_before(fd, flag, printinglen(n, flag));
 	if (n < 0)
 	{
-		printed += write(1, "-", 1);
-		printed += putzeros(flag, intlen(n), printed) + putint_aux(-n);
+		printed += write(fd, "-", 1);
+		printed += putzeros(fd, flag, intlen(n), printed) + putint_aux(fd, -n);
 	}
 	else
 	{
 		if (flag->flags & SPACE)
-			printed += write(1, " ", 1);
+			printed += write(fd, " ", 1);
 		if (flag->flags & PLUS)
-			printed += write(1, "+", 1);
+			printed += write(fd, "+", 1);
 		if (!(n == 0 && flag && flag->flags & DOT && flag->precision == 0))
-			printed += putzeros(flag, intlen(n), printed) + putint_aux(n);
+			printed += putzeros(fd, flag, intlen(n), printed) + putint_aux(fd, n);
 	}
 	return (printed);
 }

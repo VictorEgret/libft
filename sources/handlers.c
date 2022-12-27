@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 19:20:23 by vegret            #+#    #+#             */
-/*   Updated: 2022/12/21 16:47:49 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/27 03:17:24 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,24 @@ int	handle_flags(const char *s, t_flag *flag)
 	return (skipped);
 }
 
-int	handle_conv(const char *s, va_list args, t_flag *flag)
+int	handle_conv(int fd, const char *s, va_list args, t_flag *flag)
 {
 	int	printed;
 
 	printed = 0;
 	if (*s == 'c')
-		printed += putchar_c(va_arg(args, int), flag);
+		printed += putchar_c(fd, va_arg(args, int), flag);
 	else if (*s == 's')
-		printed += putstr(va_arg(args, char *), flag);
+		printed += putstr(fd, va_arg(args, char *), flag);
 	else if (*s == 'p')
-		printed += putptr(va_arg(args, void *), flag);
+		printed += putptr(fd, va_arg(args, void *), flag);
 	else if (*s == 'd' || *s == 'i')
-		printed += putint(va_arg(args, int), flag);
+		printed += putint(fd, va_arg(args, int), flag);
 	else if (*s == 'u')
-		printed += putui(va_arg(args, unsigned int), flag);
+		printed += putui(fd, va_arg(args, unsigned int), flag);
 	else if (*s == 'x' || *s == 'X')
-		printed += putul_hex(va_arg(args, unsigned int), *s == 'X', flag);
+		printed += putul_hex(fd, va_arg(args, unsigned int), *s == 'X', flag);
 	else if (*s == '%')
-		return (write(1, "%", 1));
-	return (printed + fill_after(flag, printed));
+		return (write(fd, "%", 1));
+	return (printed + fill_after(fd, flag, printed));
 }

@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 19:18:28 by vegret            #+#    #+#             */
-/*   Updated: 2022/11/15 10:53:07 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/27 03:58:39 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ int	hexlen(unsigned long n)
 	return (len);
 }
 
-static int	putul_hex_aux(unsigned long n, int u)
+static int	putul_hex_aux(int fd, unsigned long n, int u)
 {
 	if (n < 16)
 	{
 		if (u)
-			return (write(1, &UPPERHEXVALS[n], 1));
-		return (write(1, &HEXVALS[n], 1));
+			return (write(fd, &UPPERHEXVALS[n], 1));
+		return (write(fd, &HEXVALS[n], 1));
 	}
-	return (putul_hex_aux(n / 16, u) + putul_hex_aux(n % 16, u));
+	return (putul_hex_aux(fd, n / 16, u) + putul_hex_aux(fd, n % 16, u));
 }
 
 static int	printinglen(unsigned long n, t_flag *flag)
@@ -51,26 +51,26 @@ static int	printinglen(unsigned long n, t_flag *flag)
 	return (len);
 }
 
-int	putul_hex(unsigned long n, int u, t_flag *flag)
+int	putul_hex(int fd, unsigned long n, int u, t_flag *flag)
 {
 	int	printed;
 
 	printed = 0;
 	if (!(flag && flag->flags & ZERO))
-		printed = fill_before(flag, printinglen(n, flag));
+		printed = fill_before(fd, flag, printinglen(n, flag));
 	if (flag && flag->flags & SHARP && n > 0)
 	{
 		if (u)
-			printed += write(1, "0X", 2);
+			printed += write(fd, "0X", 2);
 		else
-			printed += write(1, "0x", 2);
+			printed += write(fd, "0x", 2);
 	}
-	printed += putzeros(flag, hexlen(n), printed);
+	printed += putzeros(fd, flag, hexlen(n), printed);
 	if (n == 0 && flag && flag->flags & DOT && flag->precision == 0)
 		return (printed);
 	if (n < 16)
-		printed += putul_hex_aux(n, u);
+		printed += putul_hex_aux(fd, n, u);
 	else
-		printed += putul_hex_aux(n / 16, u) + putul_hex_aux(n % 16, u);
+		printed += putul_hex_aux(fd, n / 16, u) + putul_hex_aux(fd, n % 16, u);
 	return (printed);
 }
