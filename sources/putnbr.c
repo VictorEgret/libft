@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:30:40 by vegret            #+#    #+#             */
-/*   Updated: 2022/12/27 03:30:27 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/27 04:36:49 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int	putint(int fd, int n, t_flag *flag)
 		if (flag->flags & PLUS)
 			printed += write(fd, "+", 1);
 		if (!(n == 0 && flag && flag->flags & DOT && flag->precision == 0))
-			printed += putzeros(fd, flag, intlen(n), printed) + putint_aux(fd, n);
+		{
+			printed += putzeros(fd, flag, intlen(n), printed);
+			printed += putint_aux(fd, n);
+		}
 	}
 	return (printed);
 }

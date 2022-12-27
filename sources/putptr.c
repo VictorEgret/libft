@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 21:44:33 by vegret            #+#    #+#             */
-/*   Updated: 2022/12/27 03:20:40 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/27 04:31:55 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	putptr(int fd, void *ptr, t_flag *flag)
 			printed += write(fd, " ", 1);
 		if (flag->flags & PLUS)
 			printed += write(fd, "+", 1);
-		printed += write(fd, "0x", 2) + putul_hex(fd, (unsigned long) ptr, 0, NULL);
+		printed += write(fd, "0x", 2);
+		printed += putul_hex(fd, (unsigned long) ptr, 0, NULL);
 	}
 	return (printed);
 }

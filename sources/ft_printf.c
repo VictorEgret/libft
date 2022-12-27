@@ -6,7 +6,7 @@
 /*   By: vegret <victor.egret.pro@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 17:14:40 by vegret            #+#    #+#             */
-/*   Updated: 2022/12/27 03:24:52 by vegret           ###   ########.fr       */
+/*   Updated: 2022/12/27 04:31:09 by vegret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /* TODO
 - Finir
+- norme
 - handle write fail
 */
 static int	ft_vdprintf(int fd, const char *format, va_list args)
@@ -49,7 +50,6 @@ int	ft_dprintf(int fd, const char *format, ...)
 	va_end(args);
 	return (count);
 }
-
 
 int	ft_printf(const char *format, ...)
 {
